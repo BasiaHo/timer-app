@@ -9,7 +9,7 @@ export const TimeCounter = ({ time }) => {
   }, [time]);
 
   const msToTime = (duration) => {
-    var milliseconds = Math.floor((duration % 1000)),
+    var milliseconds = Math.floor(duration % 1000),
       seconds = Math.floor((duration / 1000) % 60),
       minutes = Math.floor((duration / (1000 * 60)) % 60),
       hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
@@ -17,8 +17,6 @@ export const TimeCounter = ({ time }) => {
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-
-    console.log(duration);
 
     return hours + ':' + minutes + ':' + seconds + '.' + milliseconds;
   };
