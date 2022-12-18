@@ -1,15 +1,8 @@
-import { useState, useEffect } from 'react';
 import styles from './TimeCounter.module.scss';
 
 export const TimeCounter = ({ time }) => {
-  const [formattedTime, setFormattedTime] = useState();
-
-  useEffect(() => {
-    setFormattedTime(msToTime(time));
-  }, [time]);
-
   const msToTime = (duration) => {
-    var milliseconds = Math.floor(duration % 1000),
+    let milliseconds = Math.floor(duration % 1000),
       seconds = Math.floor((duration / 1000) % 60),
       minutes = Math.floor((duration / (1000 * 60)) % 60),
       hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
@@ -18,10 +11,12 @@ export const TimeCounter = ({ time }) => {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
-    return hours + ':' + minutes + ':' + seconds + '.' + milliseconds;
+    return `${hours}:${minutes}:${seconds}:${milliseconds
+      .toString()
+      .padStart(3, '0')}`;
   };
 
-  return <div className={styles.timeCounter}>{formattedTime}</div>;
+  return <div className={styles.timeCounter}>{msToTime(time)}</div>;
 };
 
 export default TimeCounter;

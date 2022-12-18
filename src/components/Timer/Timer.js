@@ -14,14 +14,17 @@ export const Timer = () => {
   }, []);
 
   const handleTimerStart = () => {
-    const timer = setInterval(() => {
-      setTime((time) => time + 1);
-    }, 1);
-    setTimer(timer);
+    if (!timer) {
+      const timer = setInterval(() => {
+        setTime((time) => time + 1);
+      }, 1);
+      setTimer(timer);
+    }
   };
 
   const handleTimerStop = () => {
     clearInterval(timer);
+    setTimer(null);
   };
 
   const handleTimerReset = () => {
